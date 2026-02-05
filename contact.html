@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact | PowerDataX</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-text: #0B0F19;
+            --secondary-text: #6B7280;
+            --accent: #1F3A8A;
+            --background: #FFFFFF;
+            --section-bg: #F9FAFB;
+            --border-color: #E5E7EB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--primary-text);
+            background-color: var(--background);
+            line-height: 1.6;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary-text);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.025em;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            letter-spacing: -0.025em;
+        }
+        
+        h3 {
+            font-size: 1.75rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-text);
+            font-size: 1.125rem;
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-text);
+        }
+        
+        .section-bg {
+            background-color: var(--section-bg);
+        }
+        
+        .container-custom {
+            max-width: 1280px;
+        }
+        
+        .py-6 {
+            padding-top: 6rem !important;
+            padding-bottom: 6rem !important;
+        }
+        
+        .py-7 {
+            padding-top: 8rem !important;
+            padding-bottom: 8rem !important;
+        }
+        
+        /* Navigation */
+        .navbar {
+            padding: 1.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--primary-text);
+            padding: 0.5rem 1rem;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 1rem;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: calc(100% - 2rem);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #172554;
+            border-color: #172554;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(31, 58, 138, 0.15);
+        }
+        
+        /* Contact Hero */
+        .contact-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(31, 58, 138, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+        }
+        
+        /* Contact Form */
+        .contact-form-container {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 1rem;
+            padding: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+        
+        .form-control, .form-select {
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 0.375rem;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(31, 58, 138, 0.1);
+        }
+        
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--primary-text);
+        }
+        
+        /* Contact Cards */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .contact-card {
+            padding: 2rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #1F3A8A 0%, #3B82F6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .contact-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+        }
+        
+        /* Office Locations */
+        .office-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .office-card {
+            padding: 2rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .office-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .office-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--section-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .office-icon svg {
+            width: 20px;
+            height: 20px;
+            stroke-width: 2;
+        }
+        
+        /* Support Levels */
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .support-card {
+            padding: 2rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .support-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+        
+        .support-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: var(--section-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 2rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        /* Response Times */
+        .response-times {
+            background: var(--section-bg);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .time-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .time-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0 2rem;
+            color: var(--secondary-text);
+            background: var(--section-bg);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--secondary-text);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .py-6 {
+                padding-top: 4rem !important;
+                padding-bottom: 4rem !important;
+            }
+            
+            .py-7 {
+                padding-top: 5rem !important;
+                padding-bottom: 5rem !important;
+            }
+            
+            .contact-pattern {
+                width: 100%;
+                opacity: 0.3;
+            }
+            
+            .contact-form-container {
+                padding: 2rem;
+            }
+            
+            .office-grid,
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container container-custom">
+            <a class="navbar-brand fw-bold fs-3" href="index.html">
+                <span style="color: var(--accent);">Power</span>DataX
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i data-feather="menu"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="platform.html">Platform</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="industries.html">Industries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="insights.html">Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn btn-primary" href="#contact-form">Schedule Demo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero py-7">
+        <div class="contact-pattern"></div>
+        <div class="container container-custom">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right">
+                    <h1 class="mb-4">Enterprise Contact</h1>
+                    <p class="lead mb-5">Contact our enterprise solutions team for secure data infrastructure consultation, platform demonstrations, and compliance assessments.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#contact-form" class="btn btn-primary">Send Message</a>
+                        <a href="#support" class="btn btn-outline-dark border-2">View Support Options</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i data-feather="shield"></i>
+                        </div>
+                        <h4 class="mb-3">Security-First Consultation</h4>
+                        <p>All inquiries are handled with the same security protocols we apply to our platform. Your information is protected and confidential.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="py-7" id="contact-form">
+        <div class="container container-custom">
+            <div class="row mb-6" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h2 class="mb-3">Contact Enterprise Sales</h2>
+                    <p class="lead">Complete the form below and our enterprise solutions team will contact you within 24 hours.</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8" data-aos="fade-up">
+                    <div class="contact-form-container">
+                        <form id="enterpriseContactForm">
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label for="firstName" class="form-label">First Name *</label>
+                                    <input type="text" class="form-control" id="firstName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="lastName" class="form-label">Last Name *</label>
+                                    <input type="text" class="form-control" id="lastName" required>
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Work Email *</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="phone" class="form-label">Phone Number</label>
+                                    <input type="tel" class="form-control" id="phone">
+                                </div>
+                            </div>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6">
+                                    <label for="company" class="form-label">Company/Organization *</label>
+                                    <input type="text" class="form-control" id="company" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="jobTitle" class="form-label">Job Title *</label>
+                                    <input type="text" class="form-control" id="jobTitle" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="industry" class="form-label">Industry *</label>
+                                <select class="form-select" id="industry" required>
+                                    <option value="">Select Industry</option>
+                                    <option value="government">Government/Public Sector</option>
+                                    <option value="healthcare">Healthcare & Life Sciences</option>
+                                    <option value="finance">Financial Services</option>
+                                    <option value="enterprise">Enterprise/Corporate</option>
+                                    <option value="nonprofit">Non-Profit/Education</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="inquiryType" class="form-label">Inquiry Type *</label>
+                                <select class="form-select" id="inquiryType" required>
+                                    <option value="">Select Inquiry Type</option>
+                                    <option value="demo">Platform Demonstration</option>
+                                    <option value="pricing">Pricing & Licensing</option>
+                                    <option value="technical">Technical Consultation</option>
+                                    <option value="compliance">Compliance Assessment</option>
+                                    <option value="partnership">Partnership Inquiry</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Message *</label>
+                                <textarea class="form-control" id="message" rows="4" required placeholder="Please describe your requirements, timeline, and any specific compliance needs..."></textarea>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="privacyConsent" required>
+                                    <label class="form-check-label" for="privacyConsent">
+                                        I consent to PowerDataX processing my personal data in accordance with the Privacy Policy. *
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary w-100 py-3">
+                                Submit Inquiry
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 mt-5 mt-lg-0" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-card">
+                        <div class="contact-icon">
+                            <i data-feather="clock"></i>
+                        </div>
+                        <h4 class="mb-3">Response Time</h4>
+                        <p>Enterprise inquiries receive a response within 24 hours. Urgent requests marked as high-priority receive response within 4 hours.</p>
+                    </div>
+                    
+                    <div class="contact-card mt-4">
+                        <div class="contact-icon">
+                            <i data-feather="lock"></i>
+                        </div>
+                        <h4 class="mb-3">Secure Communication</h4>
+                        <p>All communications are encrypted and handled according to our security protocols. Sensitive information is protected.</p>
+                    </div>
+                    
+                    <div class="contact-card mt-4">
+                        <div class="contact-icon">
+                            <i data-feather="users"></i>
+                        </div>
+                        <h4 class="mb-3">Dedicated Team</h4>
+                        <p>You will be assigned a dedicated enterprise solutions specialist based on your industry and requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Options -->
+    <section class="py-7 section-bg">
+        <div class="container container-custom">
+            <div class="row mb-6" data-aos="fade-up">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="mb-3">Contact Options</h2>
+                    <p class="lead">Choose the contact method that best fits your requirements.</p>
+                </div>
+            </div>
+            
+            <div class="contact-grid">
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="contact-icon">
+                        <i data-feather="mail"></i>
+                    </div>
+                    <h4 class="mb-3">Email</h4>
+                    <p class="mb-2"><strong>Enterprise Sales:</strong></p>
+                    <p><a href="mailto:enterprise@powerdatax.com">enterprise@powerdatax.com</a></p>
+                    <p class="mb-2"><strong>Technical Support:</strong></p>
+                    <p><a href="mailto:support@powerdatax.com">support@powerdatax.com</a></p>
+                </div>
+                
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-icon">
+                        <i data-feather="phone"></i>
+                    </div>
+                    <h4 class="mb-3">Phone</h4>
+                    <p class="mb-2"><strong>US Headquarters:</strong></p>
+                    <p>+1 (703) 555-0100</p>
+                    <p class="mb-2"><strong>International:</strong></p>
+                    <p>+1 (703) 555-0101</p>
+                    <p class="small mt-3">Monday-Friday, 8:00 AM - 6:00 PM EST</p>
+                </div>
+                
+                <div class="contact-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="contact-icon">
+                        <i data-feather="message-square"></i>
+                    </div>
+                    <h4 class="mb-3">Secure Messaging</h4>
+                    <p class="mb-3">For sensitive inquiries, use our encrypted messaging portal:</p>
+                    <a href="#" class="btn btn-outline-primary w-100">Access Secure Portal</a>
+                    <p class="small mt-3">Requires enterprise authentication</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Office Locations -->
+    <section class="py-7" id="locations">
+        <div class="container container-custom">
+            <div class="row mb-6" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h2 class="mb-3">Global Offices</h2>
+                    <p class="lead">Our team operates from secure facilities around the world to serve global enterprise clients.</p>
+                </div>
+            </div>
+            
+            <div class="office-grid">
+                <div class="office-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="office-icon">
+                        <i data-feather="flag"></i>
+                    </div>
+                    <h4 class="mb-3">US Headquarters</h4>
+                    <p class="mb-2"><strong>Arlington, Virginia</strong></p>
+                    <p class="mb-3">1230 Wilson Boulevard<br>Suite 800<br>Arlington, VA 22209</p>
+                    <p class="small text-muted">FedRAMP-authorized facility with SCIF capabilities</p>
+                </div>
+                
+                <div class="office-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="office-icon">
+                        <i data-feather="globe"></i>
+                    </div>
+                    <h4 class="mb-3">European Headquarters</h4>
+                    <p class="mb-2"><strong>Brussels, Belgium</strong></p>
+                    <p class="mb-3">Avenue des Arts 56<br>1000 Brussels<br>Belgium</p>
+                    <p class="small text-muted">GDPR-compliant data processing facility</p>
+                </div>
+                
+                <div class="office-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="office-icon">
+                        <i data-feather="map-pin"></i>
+                    </div>
+                    <h4 class="mb-3">Asia-Pacific Headquarters</h4>
+                    <p class="mb-2"><strong>Singapore</strong></p>
+                    <p class="mb-3">One Raffles Place<br>#32-01<br>Singapore 048616</p>
+                    <p class="small text-muted">APAC data sovereignty compliance center</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Levels -->
+    <section class="py-7 section-bg" id="support">
+        <div class="container container-custom">
+            <div class="row mb-6" data-aos="fade-up">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="mb-3">Enterprise Support Levels</h2>
+                    <p class="lead">Comprehensive support options tailored to enterprise requirements.</p>
+                </div>
+            </div>
+            
+            <div class="support-grid">
+                <div class="support-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="support-badge">Standard</div>
+                    <h4 class="mb-3">Business Hours Support</h4>
+                    <p>Monday-Friday, 9 AM - 5 PM local time. Email and phone support with 4-hour response time for critical issues.</p>
+                    <a href="#" class="btn btn-outline-primary mt-3">View Details</a>
+                </div>
+                
+                <div class="support-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="support-badge">Premium</div>
+                    <h4 class="mb-3">24/7 Support</h4>
+                    <p>Round-the-clock support with 1-hour response time for critical issues. Dedicated technical account manager.</p>
+                    <a href="#" class="btn btn-outline-primary mt-3">View Details</a>
+                </div>
+                
+                <div class="support-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="support-badge">Government</div>
+                    <h4 class="mb-3">Mission-Critical Support</h4>
+                    <p>Dedicated secure communications, on-site engineering support, and classified data handling capabilities.</p>
+                    <a href="#" class="btn btn-outline-primary mt-3">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Response Times -->
+    <section class="py-7">
+        <div class="container container-custom">
+            <div class="response-times" data-aos="fade-up">
+                <div class="row mb-5">
+                    <div class="col-lg-8">
+                        <h2 class="mb-3">Service Level Agreements</h2>
+                        <p class="lead">Guaranteed response times for enterprise support requests.</p>
+                    </div>
+                </div>
+                
+                <div class="time-item">
+                    <div>
+                        <h5 class="mb-1">Critical Security Incident</h5>
+                        <p class="mb-0 small text-muted">System compromise or data breach</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="h5 text-accent">15 minutes</span>
+                        <p class="mb-0 small text-muted">Initial response</p>
+                    </div>
+                </div>
+                
+                <div class="time-item">
+                    <div>
+                        <h5 class="mb-1">High Priority Issue</h5>
+                        <p class="mb-0 small text-muted">System degradation or major functionality loss</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="h5 text-accent">1 hour</span>
+                        <p class="mb-0 small text-muted">Initial response</p>
+                    </div>
+                </div>
+                
+                <div class="time-item">
+                    <div>
+                        <h5 class="mb-1">Medium Priority</h5>
+                        <p class="mb-0 small text-muted">Partial functionality loss or performance issues</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="h5 text-accent">4 hours</span>
+                        <p class="mb-0 small text-muted">Initial response</p>
+                    </div>
+                </div>
+                
+                <div class="time-item">
+                    <div>
+                        <h5 class="mb-1">General Inquiry</h5>
+                        <p class="mb-0 small text-muted">Information requests or non-critical questions</p>
+                    </div>
+                    <div class="text-end">
+                        <span class="h5 text-accent">24 hours</span>
+                        <p class="mb-0 small text-muted">Initial response</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-7 section-bg">
+        <div class="container container-custom">
+            <div class="row justify-content-center text-center" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h2 class="mb-4">Ready to Discuss Your Requirements?</h2>
+                    <p class="lead mb-5">Contact our enterprise solutions team for a confidential consultation on your data infrastructure needs.</p>
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                        <a href="#contact-form" class="btn btn-primary px-5">Send Message</a>
+                        <a href="mailto:enterprise@powerdatax.com" class="btn btn-outline-dark border-2 px-5">Email Directly</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container container-custom">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0" data-aos="fade-up">
+                    <h3 class="h4 mb-3">
+                        <span style="color: var(--accent);">Power</span>DataX
+                    </h3>
+                    <p class="mb-4">Enterprise-grade data infrastructure for critical systems. Established 2015. Headquartered in Arlington, Virginia.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-secondary">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-secondary">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-secondary">
+                            <i data-feather="github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="h6 mb-3">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="platform.html">Overview</a></li>
+                        <li><a href="platform.html#architecture">Architecture</a></li>
+                        <li><a href="platform.html#security">Security</a></li>
+                        <li><a href="platform.html#deployment">Deployment</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="h6 mb-3">Organization</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html#leadership">Leadership</a></li>
+                        <li><a href="about.html#ethics">Ethics</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="h6 mb-3">Contact Enterprise Sales</h4>
+                    <p class="mb-3">
+                        <a href="mailto:enterprise@powerdatax.com">enterprise@powerdatax.com</a><br>
+                        +1 (703) 555-0100
+                    </p>
+                    <p class="small mt-5">
+                        © 2023 PowerDataX Technologies. All rights reserved.<br>
+                        Compliance certifications: ISO 27001, SOC 2 Type II, FedRAMP Moderate
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Initialize Libraries -->
+    <script>
+        feather.replace();
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Navbar effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+        
+        // Form submission
+        document.getElementById('enterpriseContactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const firstName = document.getElementById('firstName').value;
+            const email = document.getElementById('email').value;
+            const company = document.getElementById('company').value;
+            const inquiryType = document.getElementById('inquiryType').value;
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                // Show success message
+                alert(`Thank you, ${firstName}. Your ${inquiryType} inquiry for ${company} has been submitted. Our enterprise team will contact you at ${email} within 24 hours.`);
+                
+                // Reset form
+                this.reset();
+                
+                // Reset button
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
