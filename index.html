@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerDataX | Enterprise Data Platform</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-text: #0B0F19;
+            --secondary-text: #6B7280;
+            --accent: #1F3A8A;
+            --background: #FFFFFF;
+            --section-bg: #F9FAFB;
+            --border-color: #E5E7EB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--primary-text);
+            background-color: var(--background);
+            line-height: 1.6;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary-text);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.025em;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            letter-spacing: -0.025em;
+        }
+        
+        h3 {
+            font-size: 1.75rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-text);
+            font-size: 1.125rem;
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-text);
+        }
+        
+        /* Section Styling */
+        .section-bg {
+            background-color: var(--section-bg);
+        }
+        
+        .container-custom {
+            max-width: 1280px;
+        }
+        
+        .py-6 {
+            padding-top: 6rem !important;
+            padding-bottom: 6rem !important;
+        }
+        
+        .py-7 {
+            padding-top: 8rem !important;
+            padding-bottom: 8rem !important;
+        }
+        
+        /* Navigation */
+        .navbar {
+            padding: 1.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--primary-text);
+            padding: 0.5rem 1rem;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 1rem;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: calc(100% - 2rem);
+        }
+        
+        /* Buttons */
+        .btn-primary {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #172554;
+            border-color: #172554;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(31, 58, 138, 0.15);
+        }
+        
+        /* Cards */
+        .card {
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            background-color: var(--background);
+            transition: all 0.4s ease;
+            height: 100%;
+            overflow: hidden;
+        }
+        
+        .card:hover {
+            border-color: var(--accent);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        .card-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #1F3A8A 0%, #3B82F6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: white;
+        }
+        
+        .card-icon svg {
+            width: 28px;
+            height: 28px;
+            stroke-width: 2;
+        }
+        
+        .card-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Hero Section */
+        .hero-section {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(249, 250, 251, 0.8) 0%, rgba(229, 231, 235, 0.4) 100%);
+            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+            z-index: -1;
+        }
+        
+        .hero-bg-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.3;
+            clip-path: polygon(25% 0%, 100% 0%, 100% 100%, 0% 100%);
+            z-index: -1;
+        }
+        
+        /* Data Visualization Placeholder */
+        .data-viz {
+            background: linear-gradient(135deg, #1F3A8A 0%, #3B82F6 100%);
+            border-radius: 0.5rem;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .data-viz::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .viz-line {
+            height: 2px;
+            background: rgba(255, 255, 255, 0.3);
+            margin: 1rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .viz-line::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .viz-dot {
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        /* Industry Cards */
+        .industry-card {
+            padding: 2rem;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+            border-radius: 0 0.5rem 0.5rem 0;
+        }
+        
+        .industry-card:hover {
+            border-left-color: var(--accent);
+            background-color: rgba(31, 58, 138, 0.03);
+            transform: translateX(8px);
+        }
+        
+        .industry-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--section-bg);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+        }
+        
+        .industry-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+        }
+        
+        /* Stats */
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--secondary-text);
+        }
+        
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0 2rem;
+            color: var(--secondary-text);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--secondary-text);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .py-6 {
+                padding-top: 4rem !important;
+                padding-bottom: 4rem !important;
+            }
+            
+            .py-7 {
+                padding-top: 5rem !important;
+                padding-bottom: 5rem !important;
+            }
+            
+            .hero-bg, .hero-bg-pattern {
+                width: 100%;
+                clip-path: none;
+                opacity: 0.5;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container container-custom">
+            <a class="navbar-brand fw-bold fs-3" href="index.html">
+                <span style="color: var(--accent);">Power</span>DataX
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i data-feather="menu"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="platform.html">Platform</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="industries.html">Industries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="insights.html">Insights</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn btn-primary" href="#contact">Schedule Demo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section py-7">
+        <div class="hero-bg"></div>
+        <div class="hero-bg-pattern"></div>
+        <div class="container container-custom">
+            <div class="row align-items-center">
+                <div class="col-lg-6" data-aos="fade-right" data-aos-duration="800">
+                    <h1 class="mb-4">Enterprise Data Infrastructure for Critical Systems</h1>
+                    <p class="lead mb-5">Secure, compliant data platforms engineered for government, healthcare, and enterprise organizations where reliability is non-negotiable.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="platform.html" class="btn btn-primary">Explore Platform</a>
+                        <a href="#contact" class="btn btn-outline-dark border-2">Contact Enterprise Sales</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                    <div class="data-viz">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="text-white">
+                                <h4 class="text-white mb-1">Live Data Flow</h4>
+                                <small class="opacity-75">Encrypted • Real-time</small>
+                            </div>
+                            <div class="viz-dot" style="top: 20px; right: 20px; animation-delay: 0.5s;"></div>
+                        </div>
+                        
+                        <div class="viz-line">
+                            <div class="viz-dot" style="top: -3px; left: 20%; animation-delay: 0.2s;"></div>
+                        </div>
+                        <div class="viz-line" style="width: 80%; margin-left: 10%;">
+                            <div class="viz-dot" style="top: -3px; left: 40%; animation-delay: 0.4s;"></div>
+                        </div>
+                        <div class="viz-line" style="width: 60%; margin-left: 20%;">
+                            <div class="viz-dot" style="top: -3px; left: 60%; animation-delay: 0.6s;"></div>
+                        </div>
+                        <div class="viz-line" style="width: 70%; margin-left: 15%;">
+                            <div class="viz-dot" style="top: -3px; left: 30%; animation-delay: 0.8s;"></div>
+                        </div>
+                        
+                        <div class="mt-4 pt-4 border-top border-white-20">
+                            <div class="row text-white text-center">
+                                <div class="col-4">
+                                    <div class="stat-number">99.99%</div>
+                                    <div class="stat-label">Uptime</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-number">256-bit</div>
+                                    <div class="stat-label">Encryption</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="stat-number">0</div>
+                                    <div class="stat-label">Breaches</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Capabilities Section -->
+    <section class="py-6 section-bg">
+        <div class="container container-custom">
+            <div class="row mb-5" data-aos="fade-up">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="mb-3">Architected for Enterprise Requirements</h2>
+                    <p class="lead">Our platform is engineered for environments where data integrity, security, and compliance are foundational requirements.</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card p-4">
+                        <div class="card-icon">
+                            <i data-feather="shield"></i>
+                        </div>
+                        <h3 class="card-title">Secure Data Federation</h3>
+                        <p>Connect disparate data sources while maintaining strict access controls, comprehensive audit trails, and end-to-end encryption. Designed for environments with regulatory compliance requirements.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card p-4">
+                        <div class="card-icon">
+                            <i data-feather="check-circle"></i>
+                        </div>
+                        <h3 class="card-title">Governance & Compliance</h3>
+                        <p>Built-in frameworks for data lineage, access governance, and automated regulatory reporting. Supports GDPR, HIPAA, FedRAMP, PCI-DSS, and sector-specific compliance requirements.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card p-4">
+                        <div class="card-icon">
+                            <i data-feather="activity"></i>
+                        </div>
+                        <h3 class="card-title">Analytical Workflows</h3>
+                        <p>Advanced tools for authorized personnel to conduct sophisticated analysis without data movement. Secure computation environments with controlled output validation and audit capabilities.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industries Section -->
+    <section class="py-7">
+        <div class="container container-custom">
+            <div class="row mb-5" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h2 class="mb-3">Trusted by Critical Industries</h2>
+                    <p class="lead">We serve organizations where data reliability, security, and compliance are essential to operational continuity and public trust.</p>
+                </div>
+            </div>
+            
+            <div class="row g-4">
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i data-feather="globe"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Government</h3>
+                        <p>Federal, state, and municipal data systems with emphasis on citizen privacy, transparency requirements, and national security protocols.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i data-feather="heart"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Healthcare</h3>
+                        <p>Health systems, research institutions, and public health organizations requiring HIPAA-compliant data infrastructure and patient privacy safeguards.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i data-feather="briefcase"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Enterprise</h3>
+                        <p>Large-scale organizations with complex data environments requiring robust governance, security frameworks, and enterprise-grade analytical capability.</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                    <div class="industry-card">
+                        <div class="industry-icon">
+                            <i data-feather="users"></i>
+                        </div>
+                        <h3 class="h4 mb-3">Public Sector</h3>
+                        <p>Non-profit and public service organizations managing sensitive data with limited resources and high public accountability requirements.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Stats Bar -->
+            <div class="row mt-6 pt-6 border-top" data-aos="fade-up">
+                <div class="col-6 col-md-3 text-center">
+                    <div class="stat-number">250+</div>
+                    <div class="stat-label">Enterprise Clients</div>
+                </div>
+                <div class="col-6 col-md-3 text-center">
+                    <div class="stat-number">15M+</div>
+                    <div class="stat-label">Secure Transactions/Day</div>
+                </div>
+                <div class="col-6 col-md-3 text-center mt-4 mt-md-0">
+                    <div class="stat-number">40+</div>
+                    <div class="stat-label">Countries Served</div>
+                </div>
+                <div class="col-6 col-md-3 text-center mt-4 mt-md-0">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Security Operations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-7 section-bg">
+        <div class="container container-custom">
+            <div class="row justify-content-center text-center" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h2 class="mb-4">Ready to Modernize Your Data Infrastructure?</h2>
+                    <p class="lead mb-5">Schedule a private demonstration with our enterprise solutions team. See how PowerDataX can meet your organization's specific requirements.</p>
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                        <a href="#contact" class="btn btn-primary px-5">Schedule Demo</a>
+                        <a href="platform.html" class="btn btn-outline-dark border-2 px-5">View Technical Specs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container container-custom">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0" data-aos="fade-up">
+                    <h3 class="h4 mb-3">
+                        <span style="color: var(--accent);">Power</span>DataX
+                    </h3>
+                    <p class="mb-4">Enterprise-grade data infrastructure for critical systems. Established 2015. Headquartered in Arlington, Virginia.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-secondary">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-secondary">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-secondary">
+                            <i data-feather="github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="h6 mb-3">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="platform.html">Overview</a></li>
+                        <li><a href="platform.html#architecture">Architecture</a></li>
+                        <li><a href="platform.html#security">Security</a></li>
+                        <li><a href="platform.html#deployment">Deployment</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="h6 mb-3">Organization</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html#leadership">Leadership</a></li>
+                        <li><a href="about.html#ethics">Ethics</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="h6 mb-3">Contact Enterprise Sales</h4>
+                    <p class="mb-3">
+                        <a href="mailto:enterprise@powerdatax.com">enterprise@powerdatax.com</a><br>
+                        +1 (703) 555-0100
+                    </p>
+                    <p class="small mt-5">
+                        © 2023 PowerDataX Technologies. All rights reserved.<br>
+                        Compliance certifications: ISO 27001, SOC 2 Type II, FedRAMP Moderate
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Initialize Libraries -->
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+        
+        // Initialize AOS (Animate On Scroll)
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Simple navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

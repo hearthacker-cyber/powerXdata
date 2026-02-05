@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insights | PowerDataX</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-text: #0B0F19;
+            --secondary-text: #6B7280;
+            --accent: #1F3A8A;
+            --background: #FFFFFF;
+            --section-bg: #F9FAFB;
+            --border-color: #E5E7EB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--primary-text);
+            background-color: var(--background);
+            line-height: 1.6;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary-text);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.025em;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            letter-spacing: -0.025em;
+        }
+        
+        h3 {
+            font-size: 1.75rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-text);
+            font-size: 1.125rem;
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-text);
+        }
+        
+        .section-bg {
+            background-color: var(--section-bg);
+        }
+        
+        .container-custom {
+            max-width: 1280px;
+        }
+        
+        .py-6 {
+            padding-top: 6rem !important;
+            padding-bottom: 6rem !important;
+        }
+        
+        .py-7 {
+            padding-top: 8rem !important;
+            padding-bottom: 8rem !important;
+        }
+        
+        /* Navigation */
+        .navbar {
+            padding: 1.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--primary-text);
+            padding: 0.5rem 1rem;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 1rem;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: calc(100% - 2rem);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent);
+            border-color: var(--accent);
+            padding: 0.875rem 2rem;
+            font-weight: 600;
+            border-radius: 0.375rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #172554;
+            border-color: #172554;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(31, 58, 138, 0.15);
+        }
+        
+        /* Insights Hero */
+        .insights-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .insights-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(31, 58, 138, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+        }
+        
+        /* Article Cards */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .article-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .article-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        }
+        
+        .article-image {
+            height: 200px;
+            background: linear-gradient(135deg, #1F3A8A 0%, #3B82F6 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .article-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0l.827.83-1.414 1.414L49.97 0l.83.83-1.415 1.414L48.143 0l.83.83-1.415 1.414L46.315 0l.83.83-1.415 1.415L44.486 0l.83.83-1.414 1.414L42.66 0l.83.83-1.415 1.414L40.83 0l.83.83-1.414 1.414L39 0l.83.83-1.414 1.414L37.172 0l.83.83-1.414 1.414L35.344 0l.83.83-1.415 1.414L33.516 0l.83.83-1.415 1.414L31.687 0l.83.83-1.414 1.414L29.86 0l.83.83-1.415 1.414L28.03 0l.83.83-1.414 1.414L26.2 0l.83.83-1.414 1.414L24.374 0l.83.83-1.415 1.414L22.544 0l.83.83-1.414 1.414L20.717 0l.83.83-1.415 1.414L18.887 0l.83.83-1.414 1.414L17.06 0l.83.83-1.414 1.414L15.23 0l.83.83-1.414 1.414L13.4 0l.83.83-1.414 1.414L11.573 0l.83.83-1.415 1.414L9.743 0l.83.83-1.414 1.414L7.916 0l.83.83-1.415 1.414L6.086 0l.83.83-1.414 1.414L4.26 0l.83.83L3.673 2.244 2.26.83 3.09 0l-.83.83L.83 2.244 0 .828.828 0 0 .83.83 0' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+        
+        .article-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 2rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .article-category.security {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .article-category.compliance {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        
+        .article-category.technology {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+        
+        .article-category.industry {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+        
+        .article-content {
+            padding: 1.5rem;
+        }
+        
+        .article-meta {
+            display: flex;
+            align-items: center;
+            color: var(--secondary-text);
+            font-size: 0.875rem;
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .article-date {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-right: 1rem;
+        }
+        
+        /* Featured Article */
+        .featured-article {
+            background: linear-gradient(135deg, #1F3A8A 0%, #3B82F6 100%);
+            color: white;
+            border-radius: 1rem;
+            padding: 3rem;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .featured-article::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.2;
+        }
+        
+        /* Trends Section */
+        .trends-section {
+            background: var(--section-bg);
+            border-radius: 1rem;
+            padding: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .trend-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .trend-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .trend-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #1F3A8A 0%, #3B82F6 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            flex-shrink: 0;
+            color: white;
+        }
+        
+        .trend-icon svg {
+            width: 24px;
+            height: 24px;
+            stroke-width: 2;
+        }
+        
+        /* Newsletter */
+        .newsletter-section {
+            background: linear-gradient(135deg, #1F3A8A 0%, #3B82F6 100%);
+            color: white;
+            border-radius: 1rem;
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M54.627 0l.83.828-1.415 1.415L51.8 0l.827.83-1.414 1.414L49.97 0l.83.83-1.415 1.414L48.143 0l.83.83-1.415 1.414L46.315 0l.83.83-1.415 1.415L44.486 0l.83.83-1.414 1.414L42.66 0l.83.83-1.415 1.414L40.83 0l.83.83-1.414 1.414L39 0l.83.83-1.414 1.414L37.172 0l.83.83-1.414 1.414L35.344 0l.83.83-1.415 1.414L33.516 0l.83.83-1.415 1.414L31.687 0l.83.83-1.414 1.414L29.86 0l.83.83-1.415 1.414L28.03 0l.83.83-1.414 1.414L26.2 0l.83.83-1.414 1.414L24.374 0l.83.83-1.415 1.414L22.544 0l.83.83-1.414 1.414L20.717 0l.83.83-1.415 1.414L18.887 0l.83.83-1.414 1.414L17.06 0l.83.83-1.414 1.414L15.23 0l.83.83-1.414 1.414L13.4 0l.83.83-1.414 1.414L11.573 0l.83.83-1.415 1.414L9.743 0l.83.83-1.414 1.414L7.916 0l.83.83-1.415 1.414L6.086 0l.83.83-1.414 1.414L4.26 0l.83.83L3.673 2.244 2.26.83 3.09 0l-.83.83L.83 2.244 0 .828.828 0 0 .83.83 0' fill='%23ffffff' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.2;
+        }
+        
+        .newsletter-input {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .newsletter-input input {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 1rem;
+        }
+        
+        .newsletter-input button {
+            background: white;
+            color: var(--accent);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 0.375rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .newsletter-input button:hover {
+            background: var(--section-bg);
+            transform: translateY(-2px);
+        }
+        
+        /* Events */
+        .events-section {
+            margin: 3rem 0;
+        }
+        
+        .event-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateX(5px);
+            border-color: var(--accent);
+        }
+        
+        .event-date {
+            background: var(--section-bg);
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            margin-right: 1.5rem;
+            min-width: 80px;
+        }
+        
+        .event-month {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--secondary-text);
+        }
+        
+        .event-day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        /* Notice */
+        .notice-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0 2rem;
+            color: var(--secondary-text);
+            background: var(--section-bg);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--secondary-text);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .py-6 {
+                padding-top: 4rem !important;
+                padding-bottom: 4rem !important;
+            }
+            
+            .py-7 {
+                padding-top: 5rem !important;
+                padding-bottom: 5rem !important;
+            }
+            
+            .insights-pattern {
+                width: 100%;
+                opacity: 0.3;
+            }
+            
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trend-item {
+                flex-direction: column;
+            }
+            
+            .trend-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-section {
+                padding: 2rem 1rem;
+            }
+            
+            .event-card {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .event-date {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container container-custom">
+            <a class="navbar-brand fw-bold fs-3" href="index.html">
+                <span style="color: var(--accent);">Power</span>DataX
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i data-feather="menu"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="platform.html">Platform</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="industries.html">Industries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="insights.html">Insights</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn btn-primary" href="#contact">Schedule Demo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="insights-hero py-7">
+        <div class="insights-pattern"></div>
+        <div class="container container-custom">
+            <div class="row align-items-center">
+                <div class="col-lg-8" data-aos="fade-right">
+                    <h1 class="mb-4">Industry Insights & Analysis</h1>
+                    <p class="lead mb-5">Expert analysis on data security, privacy regulations, and enterprise data infrastructure trends affecting government, healthcare, and regulated industries.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#articles" class="btn btn-primary">Browse Articles</a>
+                        <a href="#newsletter" class="btn btn-outline-dark border-2">Subscribe to Insights</a>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-5 mt-lg-0" data-aos="fade-left">
+                    <div class="article-card">
+                        <div class="article-image">
+                            <span class="article-category security">Security</span>
+                        </div>
+                        <div class="article-content">
+                            <h4 class="mb-3">Zero-Trust Architecture Implementation</h4>
+                            <p class="small">Best practices for implementing zero-trust security models in enterprise environments.</p>
+                            <div class="article-meta">
+                                <span class="article-date">
+                                    <i data-feather="calendar" style="width: 14px; height: 14px;"></i>
+                                    November 15, 2023
+                                </span>
+                                <span>• 8 min read</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notice -->
+    <section class="py-7">
+        <div class="container container-custom">
+            <div class="notice-box" data-aos="fade-up">
+                <i data-feather="info" style="color: #856404;"></i>
+                <div>
+                    <h5>Content Automation Notice</h5>
+                    <p class="mb-0">This page currently features manually curated content. Automation for real-time industry news and trend analysis is planned for Q2 2024 as part of our platform enhancement roadmap.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Article -->
+    <section class="py-7">
+        <div class="container container-custom">
+            <div class="featured-article" data-aos="fade-up">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <span class="article-category compliance" style="position: static; margin-bottom: 1rem;">Regulatory Update</span>
+                        <h2 class="text-white mb-3">New EU Data Act: Implications for Cross-Border Government Data Sharing</h2>
+                        <p class="text-white opacity-90 mb-4">The recently enacted EU Data Act establishes new requirements for data sharing between public sector bodies and with private entities. This analysis examines the impact on government agencies operating across EU borders and the technical requirements for compliance.</p>
+                        <div class="d-flex align-items-center text-white">
+                            <i data-feather="calendar" class="me-2" style="width: 16px; height: 16px;"></i>
+                            <span class="me-4">November 15, 2023</span>
+                            <i data-feather="clock" class="me-2" style="width: 16px; height: 16px;"></i>
+                            <span>8 min read</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                        <a href="#" class="btn btn-light">Read Full Analysis</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Grid -->
+    <section class="py-7 section-bg" id="articles">
+        <div class="container container-custom">
+            <div class="row mb-6" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h2 class="mb-3">Latest Insights</h2>
+                    <p class="lead">Analysis and perspectives on the latest developments in data security, privacy, and infrastructure.</p>
+                </div>
+            </div>
+            
+            <div class="article-grid">
+                <div class="article-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="article-image">
+                        <span class="article-category security">Security</span>
+                    </div>
+                    <div class="article-content">
+                        <h4 class="mb-3">Zero-Trust Architecture Implementation Patterns for Healthcare Data</h4>
+                        <p>Analysis of zero-trust implementation patterns specifically designed for healthcare environments, focusing on protecting PHI while enabling necessary clinical data access.</p>
+                        <div class="article-meta">
+                            <span class="article-date">
+                                <i data-feather="calendar" style="width: 14px; height: 14px;"></i>
+                                November 10, 2023
+                            </span>
+                            <span>• 6 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="article-image">
+                        <span class="article-category technology">Technology</span>
+                    </div>
+                    <div class="article-content">
+                        <h4 class="mb-3">Homomorphic Encryption: Practical Applications for Government Analytics</h4>
+                        <p>Evaluation of homomorphic encryption technologies for secure computation on sensitive government data, including performance benchmarks and implementation considerations.</p>
+                        <div class="article-meta">
+                            <span class="article-date">
+                                <i data-feather="calendar" style="width: 14px; height: 14px;"></i>
+                                November 5, 2023
+                            </span>
+                            <span>• 10 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="article-image">
+                        <span class="article-category industry">Industry Analysis</span>
+                    </div>
+                    <div class="article-content">
+                        <h4 class="mb-3">Healthcare Data Interoperability: Progress and Remaining Challenges</h4>
+                        <p>Review of current interoperability standards in healthcare, analysis of adoption rates, and identification of technical and regulatory barriers to seamless data exchange.</p>
+                        <div class="article-meta">
+                            <span class="article-date">
+                                <i data-feather="calendar" style="width: 14px; height: 14px;"></i>
+                                October 28, 2023
+                            </span>
+                            <span>• 7 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card" data-aos="fade-up" data-aos-delay="400">
+                    <div class="article-image">
+                        <span class="article-category compliance">Compliance</span>
+                    </div>
+                    <div class="article-content">
+                        <h4 class="mb-3">FedRAMP Revision 5: Key Changes for Government Cloud Providers</h4>
+                        <p>Detailed analysis of FedRAMP Revision 5 changes, focusing on new security controls and their implementation implications for government cloud service providers.</p>
+                        <div class="article-meta">
+                            <span class="article-date">
+                                <i data-feather="calendar" style="width: 14px; height: 14px;"></i>
+                                October 22, 2023
+                            </span>
+                            <span>• 9 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card" data-aos="fade-up" data-aos-delay="500">
+                    <div class="article-image">
+                        <span class="article-category security">Best Practices</span>
+                    </div>
+                    <div class="article-content">
+                        <h4 class="mb-3">Data Minimization Strategies for Enterprise Analytics Platforms</h4>
+                        <p>Framework for implementing data minimization principles in enterprise analytics environments, balancing analytical needs with privacy and security requirements.</p>
+                        <div class="article-meta">
+                            <span class="article-date">
+                                <i data-feather="calendar" style="width: 14px; height: 14px;"></i>
+                                October 15, 2023
+                            </span>
+                            <span>• 5 min read</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="article-card" data-aos="fade-up" data-aos-delay="600">
+                    <div class="article-image">
+                        <span class="article-category industry">Case Study</span>
+                    </div>
+                    <div class="article-content">
+                        <h4 class="mb-3">State Government: Modernizing Legacy Data Systems While Maintaining Compliance</h4>
+                        <p>Case study of a state government agency's successful migration from legacy data systems to modern secure infrastructure while maintaining continuous regulatory compliance.</p>
+                        <div class="article-meta">
+                            <span class="article-date">
+                                <i data-feather="calendar" style="width: 14px; height: 14px;"></i>
+                                October 8, 2023
+                            </span>
+                            <span>• 8 min read</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Industry Trends -->
+    <section class="py-7">
+        <div class="container container-custom">
+            <div class="trends-section" data-aos="fade-up">
+                <div class="row mb-5">
+                    <div class="col-lg-8">
+                        <h2 class="mb-3">Emerging Trends & Analysis</h2>
+                        <p class="lead">Key developments shaping the future of data security and infrastructure in regulated industries.</p>
+                    </div>
+                </div>
+                
+                <div class="trend-item">
+                    <div class="trend-icon">
+                        <i data-feather="shield"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-2">Privacy-Enhancing Technologies (PETs)</h4>
+                        <p>Increased adoption of differential privacy, secure multi-party computation, and federated learning techniques in regulated industries to enable data analysis while protecting individual privacy. Organizations are implementing these technologies to balance analytical needs with growing privacy regulations.</p>
+                    </div>
+                </div>
+                
+                <div class="trend-item">
+                    <div class="trend-icon">
+                        <i data-feather="globe"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-2">Data Sovereignty Requirements</h4>
+                        <p>Growing complexity in cross-border data regulations requiring sophisticated data localization and sovereignty management capabilities in enterprise data platforms. Organizations must navigate conflicting requirements across jurisdictions while maintaining operational efficiency.</p>
+                    </div>
+                </div>
+                
+                <div class="trend-item">
+                    <div class="trend-icon">
+                        <i data-feather="activity"></i>
+                    </div>
+                    <div>
+                        <h4 class="mb-2">Real-Time Compliance Monitoring</h4>
+                        <p>Shift from periodic compliance audits to continuous real-time monitoring and automated reporting, enabled by advances in data governance technology. This trend reduces compliance costs while improving security posture through immediate detection of policy violations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="py-7 section-bg">
+        <div class="container container-custom">
+            <div class="events-section" data-aos="fade-up">
+                <div class="row mb-5">
+                    <div class="col-lg-8">
+                        <h2 class="mb-3">Upcoming Industry Events</h2>
+                        <p class="lead">Conferences and forums focused on data security, privacy, and infrastructure in regulated industries.</p>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="event-month">DEC</div>
+                        <div class="event-day">12</div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1">Government Data Security Summit</h5>
+                        <p class="text-muted mb-2">Washington, D.C. • Focus: Zero-trust implementation in federal agencies</p>
+                        <a href="#" class="small d-inline-flex align-items-center">
+                            Event Details <i data-feather="arrow-right" class="ms-1" style="width: 14px; height: 14px;"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="event-month">JAN</div>
+                        <div class="event-day">18</div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1">Healthcare Data Privacy Conference</h5>
+                        <p class="text-muted mb-2">Virtual • Focus: HIPAA updates and interoperability challenges</p>
+                        <a href="#" class="small d-inline-flex align-items-center">
+                            Event Details <i data-feather="arrow-right" class="ms-1" style="width: 14px; height: 14px;"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="event-card">
+                    <div class="event-date">
+                        <div class="event-month">FEB</div>
+                        <div class="event-day">22</div>
+                    </div>
+                    <div class="flex-grow-1">
+                        <h5 class="mb-1">Enterprise Data Governance Forum</h5>
+                        <p class="text-muted mb-2">San Francisco • Focus: Global compliance automation</p>
+                        <a href="#" class="small d-inline-flex align-items-center">
+                            Event Details <i data-feather="arrow-right" class="ms-1" style="width: 14px; height: 14px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-7" id="newsletter">
+        <div class="container container-custom">
+            <div class="newsletter-section" data-aos="fade-up">
+                <div class="position-relative" style="z-index: 1;">
+                    <h3 class="text-white mb-3">Subscribe to Enterprise Insights</h3>
+                    <p class="text-white mb-4 opacity-90">Receive monthly analysis of data security, privacy regulations, and infrastructure trends affecting government and enterprise organizations.</p>
+                    
+                    <div class="newsletter-input">
+                        <input type="email" placeholder="Enter your work email address" class="mb-3">
+                        <button type="button">Subscribe to Insights</button>
+                    </div>
+                    
+                    <p class="text-white opacity-75 mt-3 small">Enterprise email addresses only. No marketing content. Unsubscribe anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-7">
+        <div class="container container-custom">
+            <div class="row justify-content-center text-center" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h2 class="mb-4">Need Expert Analysis for Your Organization?</h2>
+                    <p class="lead mb-5">Our team of industry experts can provide customized analysis and recommendations for your specific data infrastructure challenges.</p>
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                        <a href="#contact" class="btn btn-primary px-5">Request Consultation</a>
+                        <a href="industries.html" class="btn btn-outline-dark border-2 px-5">View Industry Solutions</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container container-custom">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0" data-aos="fade-up">
+                    <h3 class="h4 mb-3">
+                        <span style="color: var(--accent);">Power</span>DataX
+                    </h3>
+                    <p class="mb-4">Enterprise-grade data infrastructure for critical systems. Established 2015. Headquartered in Arlington, Virginia.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-secondary">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-secondary">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-secondary">
+                            <i data-feather="github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="h6 mb-3">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="platform.html">Overview</a></li>
+                        <li><a href="platform.html#architecture">Architecture</a></li>
+                        <li><a href="platform.html#security">Security</a></li>
+                        <li><a href="platform.html#deployment">Deployment</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="h6 mb-3">Organization</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html#leadership">Leadership</a></li>
+                        <li><a href="about.html#ethics">Ethics</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="h6 mb-3">Contact Enterprise Sales</h4>
+                    <p class="mb-3">
+                        <a href="mailto:enterprise@powerdatax.com">enterprise@powerdatax.com</a><br>
+                        +1 (703) 555-0100
+                    </p>
+                    <p class="small mt-5">
+                        © 2023 PowerDataX Technologies. All rights reserved.<br>
+                        Compliance certifications: ISO 27001, SOC 2 Type II, FedRAMP Moderate
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Initialize Libraries -->
+    <script>
+        feather.replace();
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+        
+        // Newsletter subscription
+        document.querySelector('.newsletter-input button').addEventListener('click', function() {
+            const email = document.querySelector('.newsletter-input input').value;
+            if(email && email.includes('@') && email.includes('.')) {
+                alert('Thank you for subscribing to Enterprise Insights. A confirmation email has been sent to ' + email);
+                document.querySelector('.newsletter-input input').value = '';
+            } else {
+                alert('Please enter a valid enterprise email address.');
+            }
+        });
+    </script>
+</body>
+</html>
