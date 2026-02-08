@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | PowerDataX</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Inter Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <style>
+        :root {
+            --primary-text: #0B0F19;
+            --secondary-text: #6B7280;
+            --accent: #1F3A8A;
+            --background: #FFFFFF;
+            --section-bg: #F9FAFB;
+            --border-color: #E5E7EB;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--primary-text);
+            background-color: var(--background);
+            line-height: 1.6;
+            font-weight: 400;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            color: var(--primary-text);
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            letter-spacing: -0.025em;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            letter-spacing: -0.025em;
+        }
+        
+        h3 {
+            font-size: 1.75rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            color: var(--secondary-text);
+            font-size: 1.125rem;
+        }
+        
+        .lead {
+            font-size: 1.25rem;
+            font-weight: 400;
+        }
+        
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        a:hover {
+            color: var(--primary-text);
+        }
+        
+        .section-bg {
+            background-color: var(--section-bg);
+        }
+        
+        .container-custom {
+            max-width: 1000px;
+        }
+        
+        .py-6 {
+            padding-top: 6rem !important;
+            padding-bottom: 6rem !important;
+        }
+        
+        .py-7 {
+            padding-top: 8rem !important;
+            padding-bottom: 8rem !important;
+        }
+        
+        /* Navigation */
+        .navbar {
+            padding: 1.5rem 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--primary-text);
+            padding: 0.5rem 1rem;
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--accent);
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 1rem;
+            background-color: var(--accent);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: calc(100% - 2rem);
+        }
+        
+        /* Privacy Hero */
+        .privacy-hero {
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .privacy-pattern {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(31, 58, 138, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+        }
+        
+        /* Policy Content */
+        .policy-content {
+            line-height: 1.8;
+        }
+        
+        .policy-section {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .policy-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .policy-list {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .policy-list li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .legal-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--section-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        /* Table Styling */
+        .metrics-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+        }
+        
+        .metrics-table th,
+        .metrics-table td {
+            padding: 1rem;
+            border: 1px solid var(--border-color);
+            text-align: left;
+        }
+        
+        .metrics-table th {
+            background: var(--section-bg);
+            font-weight: 600;
+        }
+        
+        /* Card Styling */
+        .rights-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .rights-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-2px);
+        }
+        
+        /* Notice Box */
+        .notice-box {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 0.5rem;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 0 2rem;
+            color: var(--secondary-text);
+            background: var(--section-bg);
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--secondary-text);
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+            padding-left: 4px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .py-6 {
+                padding-top: 4rem !important;
+                padding-bottom: 4rem !important;
+            }
+            
+            .py-7 {
+                padding-top: 5rem !important;
+                padding-bottom: 5rem !important;
+            }
+            
+            .privacy-pattern {
+                width: 100%;
+                opacity: 0.3;
+            }
+            
+            .metrics-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .container-custom {
+                padding-left: 1.5rem;
+                padding-right: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container container-custom">
+            <a class="navbar-brand fw-bold fs-3" href="index.html">
+                <span style="color: var(--accent);">Power</span>DataX
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <i data-feather="menu"></i>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="platform.html">Platform</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="industries.html">Industries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="insights.html">Insights</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item ms-lg-3 mt-3 mt-lg-0">
+                        <a class="btn btn-primary" href="contact.html">Schedule Demo</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="privacy-hero py-7">
+        <div class="privacy-pattern"></div>
+        <div class="container container-custom">
+            <div class="row" data-aos="fade-up">
+                <div class="col-lg-10">
+                    <h1 class="mb-4">Privacy Policy</h1>
+                    <p class="lead">Last updated: December 11, 2025</p>
+                    <p>This Privacy Notice for PowerDataX, a Nevada LLC ("we," "our," or "us"), describes how and why we might access, collect, store, use, and/or share ("process") your personal information when you use our services ("Services").</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Policy Content -->
+    <section class="py-7">
+        <div class="container container-custom">
+            <div class="policy-content">
+                
+                <!-- Introduction -->
+                <div class="policy-section" data-aos="fade-up">
+                    <div class="notice-box">
+                        <div class="d-flex align-items-start">
+                            <i data-feather="alert-circle" class="me-3" style="color: #856404;"></i>
+                            <div>
+                                <h5 class="mb-2">Questions or Concerns?</h5>
+                                <p class="mb-0">Reading this Privacy Notice will help you understand your privacy rights and choices. We are responsible for making decisions about how your personal information is processed. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:privacy@powerdatax.com">privacy@powerdatax.com</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Personal Information Collection -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">Personal Information We Collect</h2>
+                    
+                    <h4 class="mt-4 mb-3">Information We Collect From You</h4>
+                    <p>You may provide your name, contact details, information about your job (like your title or the name of your employer), content you post in our community forums or over social media, and other personal information directly to PowerDataX when you interact with us or our services.</p>
+                    <p>We also may collect personal information about you through your device or browser while you are using or visiting our sites or services or when you engage or interact with us, such as by opening an email. This personal information may include your IP address, device identifier, geographic location, or usage information such as authentication, analytics, and other information that allows us to provide you with a more personalized experience.</p>
+                    
+                    <h4 class="mt-4 mb-3">Information We Receive From Other Sources</h4>
+                    <p>In addition to personal information we collect from you, we may receive personal information about you from other sources and through our own research. We may receive your personal information from:</p>
+                    <ul class="policy-list">
+                        <li>PowerDataX customers</li>
+                        <li>Third party partners, email campaigns, and marketing partners</li>
+                        <li>Publicly available sources including company websites, blogs, government publications, press releases, news articles, and social media</li>
+                        <li>Commercial registers and non-confidential corporate records</li>
+                    </ul>
+                    <p>Such third party data may include professional/business contact details (including mobile phone numbers), personal email addresses, company information, employment history and salary information, professional identifiers (for example, license numbers, professional registration numbers, or professional membership IDs), and demographic information.</p>
+                    <p>We do not intentionally collect from third parties sensitive personal information like health information, biometric data, or credit card information of non-customers.</p>
+                </div>
+
+                <!-- How We Use Information -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">How We Use Personal Information</h2>
+                    
+                    <div class="rights-card">
+                        <h5 class="mb-2">Providing and Improving Our Services</h5>
+                        <p class="mb-0">We use personal information to operate, improve and personalize our business and services. This includes collecting data through integrations, troubleshooting or improving our services, making inferences, and deriving insights, trends, use, and analytics.</p>
+                    </div>
+                    
+                    <div class="rights-card">
+                        <h5 class="mb-2">Advertising and Marketing</h5>
+                        <p class="mb-0">We use personal information for advertising and marketing, such as analyzing and predicting business buying behavior or business interests and delivering interest-based advertising and content to your device.</p>
+                    </div>
+                    
+                    <div class="rights-card">
+                        <h5 class="mb-2">Legal Compliance</h5>
+                        <p class="mb-0">We may use all personal information we collect or receive as required under contract, law, legal or financial processes (like audits), and to protect PowerDataX's legal and contractual rights.</p>
+                    </div>
+                    
+                    <div class="rights-card">
+                        <h5 class="mb-2">Reporting and Analytics</h5>
+                        <p class="mb-0">We may use personal information to create reports for our company and for PowerDataX customers about the companies that visit our or their websites, as well as actual or predicted interests for those visitors.</p>
+                    </div>
+                    
+                    <div class="rights-card">
+                        <h5 class="mb-2">Business Operations</h5>
+                        <p class="mb-0">We use personal information for billing, account management, invoicing, maintaining security and privacy, as well as other legitimate business interests.</p>
+                    </div>
+                    
+                    <div class="notice-box mt-4">
+                        <p class="mb-0"><strong>Do Not Track:</strong> Some browsers have incorporated "Do Not Track" (DNT) features. We do not respond to DNT signals.</p>
+                    </div>
+                </div>
+
+                <!-- Information Sharing -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">How We Share Personal Information</h2>
+                    
+                    <p>We may share personal information with third parties as described below:</p>
+                    
+                    <h5 class="mt-4 mb-2">Sharing with Customers and Partners</h5>
+                    <p>We share personal information with our customers and partners in order to provide services to our customers. PowerDataX customers and partners may combine the personal information we share with additional data they have for their own marketing and sales purposes.</p>
+                    
+                    <h5 class="mt-4 mb-2">Sharing for Business Purposes</h5>
+                    <p>We share personal information for our legitimate business needs. For example, we share information with third party vendors (such as marketing, billing, or service providers), consultants, and other service providers who work on our behalf and need access to personal information to perform their work for us.</p>
+                    
+                    <h5 class="mt-4 mb-2">Legal Disclosures</h5>
+                    <p>In certain situations, we may be requested or required to disclose personal information in response to lawful requests by public authorities, including to meet national security or law enforcement requirements. PowerDataX will disclose personal information where required to do so.</p>
+                    
+                    <h5 class="mt-4 mb-2">Business Transfers</h5>
+                    <p>If PowerDataX sells a substantial portion of its assets or is acquired, reorganized, merged into another entity, goes out of business, or enters bankruptcy, it is likely that personal information will be one of the business assets transferred in connection with such activity.</p>
+                    
+                    <h5 class="mt-4 mb-2">With Your Consent</h5>
+                    <p>We may share your personal information for any other purpose with your consent. If you have consented to a specific use of your personal information, you may revoke your consent for future use of your personal information for that purpose by contacting us through our privacy rights request form.</p>
+                </div>
+
+                <!-- Legal Bases -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">Legal Bases for Processing</h2>
+                    <p>The General Data Protection Regulation (GDPR) and UK GDPR require us to explain the valid legal bases we rely on in order to process your personal information. As such, we may rely on the following legal bases to process your personal information:</p>
+                    
+                    <ul class="policy-list">
+                        <li><strong>Consent:</strong> We may process your information if you have given us permission to use your personal information for a specific purpose.</li>
+                        <li><strong>Performance of a Contract:</strong> We may process your personal information when we believe it is necessary to fulfill our contractual obligations to you.</li>
+                        <li><strong>Legal Obligations:</strong> We may process your information where we believe it is necessary for compliance with our legal obligations.</li>
+                        <li><strong>Vital Interests:</strong> We may process your information where we believe it is necessary to protect your vital interests or the vital interests of a third party.</li>
+                    </ul>
+                </div>
+
+                <!-- Security -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">How We Protect Personal Information</h2>
+                    <p>We take reasonable and appropriate technical and organizational measures designed to protect and secure personal information and prevent its loss, misuse and unauthorized access, disclosure, alteration, or destruction.</p>
+                    <div class="notice-box">
+                        <p class="mb-0"><strong>Security Notice:</strong> Unfortunately, the transmission of information via the internet is not always secure. Although we do our best to protect information, we cannot guarantee the security of your personal information.</p>
+                    </div>
+                </div>
+
+                <!-- Data Retention -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">Data Retention</h2>
+                    <p>PowerDataX retains personal information for as long as necessary to provide its products and services, comply with our legal obligations, resolve disputes, and enforce our agreements.</p>
+                </div>
+
+                <!-- International Transfers -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">International Data Transfers</h2>
+                    <p>We may transfer, store, or process your personal information to the United States. The United States and other countries may not have data protection laws that are as comprehensive or protective as those in your country; however, our collection, storage and use of your personal information will at all times be in accordance with this Privacy Notice.</p>
+                    <p>When PowerDataX transfers personal information from the European Economic Area ("EEA"), Switzerland, or the United Kingdom ("UK") to another country, we implement an appropriate data transfer mechanism, like entering into standard contractual clauses approved by European data protection regulators, or take other measures to provide an adequate level of protection under EEA, Swiss, or UK law.</p>
+                </div>
+
+                <!-- Your Rights -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">Your Privacy Rights</h2>
+                    
+                    <h4 class="mt-4 mb-3">For Everyone</h4>
+                    <p>To exercise your privacy rights, please use our privacy rights request form. We will verify your identity when needed to comply with your request, which may include reviewing government identification, and may be unable to proceed with your request if we are not able to verify your identity.</p>
+                    
+                    <p>You have the right to request that we correct or otherwise amend your personal information. If we process your personal information on behalf of one of our customers, we may ask that you work with the customer to amend your personal information.</p>
+                    
+                    <h4 class="mt-4 mb-3">California Residents</h4>
+                    <p>If you are a California resident, you have the right to request that we disclose to you what "Personal Information" as defined in the California Consumer Privacy Act as amended by the California Privacy Rights Act (referred to in a consolidated way as "CCPA") we collect, use, disclose and sell, and the specific Personal Information we have collected about you in the prior 12 months.</p>
+                    
+                    <div class="legal-badge">California Privacy Rights Metrics</div>
+                    <p>For the period between January 1, 2024 and December 31, 2025:</p>
+                    
+                    <table class="metrics-table">
+                        <thead>
+                            <tr>
+                                <th>Request Type</th>
+                                <th>Received</th>
+                                <th>Complied With</th>
+                                <th>Denied (Verification)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>CA Requests to Know</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>CA Requests to Delete</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr>
+                                <td>CA Requests to Opt-Out</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <h4 class="mt-4 mb-3">European Residents</h4>
+                    <p>If you are located in the EEA, Switzerland or the UK, subject to the exemptions under law, you may have the right to request access or delete your personal information. Under certain circumstances, you have the right to receive personal information that we process about you and transmit that information to another organization (data portability).</p>
+                </div>
+
+                <!-- Children's Privacy -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">Children's Privacy</h2>
+                    <p>We do not direct services to children under age 18. We do not knowingly collect information from children under 18. If you believe that we may have collected personal information from someone under 18 without required consent, please contact us at <a href="mailto:privacy@powerdatax.com">privacy@powerdatax.com</a>.</p>
+                </div>
+
+                <!-- Governing Law -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">Governing Law & Arbitration</h2>
+                    <p>This Privacy Policy is to be governed by and construed in accordance with the internal laws of the State of Florida, without regard for principles of conflicts of laws. Any civil action, claim, dispute or proceeding arising out of, or relating to, this Privacy Policy shall be referred to final and binding arbitration, before a single arbitrator, under the commercial arbitration rules of the American Arbitration Association in Dade County, Florida.</p>
+                </div>
+
+                <!-- Contact Information -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">Contact Us</h2>
+                    <p>If you would like to exercise your privacy rights, please use our privacy rights request form. If you have questions about our privacy practices or this Privacy Notice you may write to us at:</p>
+                    
+                    <div class="rights-card">
+                        <h5 class="mb-2">Privacy & Compliance Department</h5>
+                        <p class="mb-1"><strong>Email:</strong> <a href="mailto:privacy@powerdatax.com">privacy@powerdatax.com</a></p>
+                        <p class="mb-1"><strong>General Inquiries:</strong> <a href="mailto:info@powerdatax.com">info@powerdatax.com</a></p>
+                    </div>
+                    
+                    <div class="rights-card mt-3">
+                        <h5 class="mb-2">Data Protection Officer</h5>
+                        <p class="mb-0">To contact our Data Protection Officer, please email <a href="mailto:dpo@powerdatax.com">dpo@powerdatax.com</a>.</p>
+                    </div>
+                </div>
+
+                <!-- Policy Updates -->
+                <div class="policy-section" data-aos="fade-up">
+                    <h2 class="mb-4">Policy Updates</h2>
+                    <p>When we change this Privacy Notice, the updated terms will be available on this page and effective as of the date posted. We encourage you to periodically review this page for the latest information on our privacy practices.</p>
+                    <div class="notice-box">
+                        <p class="mb-0"><strong>Last Updated:</strong> December 11, 2025</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-7 section-bg">
+        <div class="container container-custom">
+            <div class="row justify-content-center text-center" data-aos="fade-up">
+                <div class="col-lg-8">
+                    <h2 class="mb-4">Have Privacy Questions?</h2>
+                    <p class="lead mb-5">Our privacy team is available to address any questions or concerns about your personal data and our privacy practices.</p>
+                    <div class="d-flex flex-column flex-sm-row justify-content-center gap-3">
+                        <a href="contact.html" class="btn btn-primary px-5">Contact Privacy Team</a>
+                        <a href="mailto:privacy@powerdatax.com" class="btn btn-outline-dark border-2 px-5">Email Directly</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container container-custom">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0" data-aos="fade-up">
+                    <h3 class="h4 mb-3">
+                        <span style="color: var(--accent);">Power</span>DataX
+                    </h3>
+                    <p class="mb-4">Enterprise-grade data infrastructure for critical systems. Established 2015. Headquartered in Arlington, Virginia.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-secondary">
+                            <i data-feather="linkedin"></i>
+                        </a>
+                        <a href="#" class="text-secondary">
+                            <i data-feather="twitter"></i>
+                        </a>
+                        <a href="#" class="text-secondary">
+                            <i data-feather="github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
+                    <h4 class="h6 mb-3">Platform</h4>
+                    <ul class="footer-links">
+                        <li><a href="platform.html">Overview</a></li>
+                        <li><a href="platform.html#architecture">Architecture</a></li>
+                        <li><a href="platform.html#security">Security</a></li>
+                        <li><a href="platform.html#deployment">Deployment</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-2 col-md-4 mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
+                    <h4 class="h6 mb-3">Organization</h4>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="about.html#leadership">Leadership</a></li>
+                        <li><a href="about.html#ethics">Ethics</a></li>
+                        <li><a href="insights.html">Insights</a></li>
+                    </ul>
+                </div>
+                
+                <div class="col-lg-4 col-md-4" data-aos="fade-up" data-aos-delay="300">
+                    <h4 class="h6 mb-3">Contact Enterprise Sales</h4>
+                    <p class="mb-3">
+                        <a href="mailto:enterprise@powerdatax.com">enterprise@powerdatax.com</a><br>
+                        +1 (703) 555-0100
+                    </p>
+                    <p class="small mt-5">
+                        © 2023 PowerDataX Technologies. All rights reserved.<br>
+                        Compliance certifications: ISO 27001, SOC 2 Type II, FedRAMP Moderate
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Initialize Libraries -->
+    <script>
+        feather.replace();
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+        
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.08)';
+            } else {
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
